@@ -11,6 +11,7 @@
     "mongodb": "^2.1.16",
     "ramda": "^0.25.0"
   },
+  "main": "server",
   "engine": {
     "node": "*",
     "npm": "*"
