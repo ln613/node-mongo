@@ -1,0 +1,28 @@
+{
+  "name": "@ln613/node-mongo",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.13.4",
+    "jsonwebtoken": "^8.2.1",
+    "moment": "^2.22.2",
+    "mongodb": "^2.1.16",
+    "ramda": "^0.25.0"
+  },
+  "engine": {
+    "node": "*",
+    "npm": "*"
+  },
+  "scripts": {
+    "start": "nodemon server/server.js",
+    "test": ""
+  },
+  "author": "Nan Li",
+  "license": "MIT",
+  "homepage": "https://github.com/ln613/node-mongo",
+  "devDependencies": {
+    "nodemon": "^1.17.3"
+  }
+}
