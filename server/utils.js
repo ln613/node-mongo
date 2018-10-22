@@ -21,7 +21,7 @@ e.ip = process.env.IP || '0.0.0.0';
 e.secret = e.config ? e.config.secret : process.env.secret;
 e.username = e.config ? e.config.username : process.env.username;
 e.password = e.config ? e.config.password : process.env.password;
-e.dbname = e.config ? e.config.dbname : process.env.dbname;
+e.dbname = e.config ? e.config.dbname : (process.env.dbname || e.root.split(path.sep).slice(-1));
 e.mongoURL = process.env.MONGO_URL || `mongodb://localhost:27017/${e.dbname}`;
 e.appname = e.config ? e.config.appname : process.env.appname;
 
