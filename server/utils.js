@@ -1,6 +1,7 @@
 const R = require('ramda');
 const fs = require('fs');
 const path = require('path');
+const { get } = require('@ln613/util');
 
 const e = {};
 
@@ -16,14 +17,14 @@ e.path = f => path.join(e.root, f);
 e.config = fs.existsSync(e.path('config.js')) ? require(e.path('config.js')) : null;
 e.isDev = () => process.env.NODE_ENV && e.isIn(['development', 'dev'])(process.env.NODE_ENV.toLowerCase());
 e.isProd = () => !process.env.NODE_ENV || e.isIn(['production', 'prod'])(process.env.NODE_ENV.toLowerCase());
-e.port = process.env.PORT || e.config ? e.config.port : 3000;
+e.port = get('port')(e.config) || process.env.PORT || 3000;
 e.ip = process.env.IP || '0.0.0.0';
-e.secret = e.config ? e.config.secret : process.env.secret;
-e.username = e.config ? e.config.username : process.env.username;
-e.password = e.config ? e.config.password : process.env.password;
-e.dbname = e.config ? e.config.dbname : (process.env.dbname || e.root.split(path.sep).slice(-1));
+e.secret = get('secret')(e.config) || process.env.secret;
+e.username = get('username')(e.config) || process.env.username;
+e.password = get('password')(e.config) || process.env.password;
+e.dbname = get('dbname')(e.config) || process.env.dbname || e.root.split(path.sep).slice(-1);
 e.mongoURL = process.env.MONGO_URL || `mongodb://localhost:27017/${e.dbname}`;
-e.appname = e.config ? e.config.appname : process.env.appname;
+e.appname = get('appname')(e.config) || process.env.appname;
 
 // request/response
 const send = d => (p, res) => p.then(x => res.json(d || x)).catch(e => res.send(e));
